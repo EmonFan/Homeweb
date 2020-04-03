@@ -1,0 +1,235 @@
+//Collection of methods to control the home hardware.
+
+/**
+ * Selects the HDMI1 input on the Yamaha receiver and turns off all players
+ * @returns nothing
+ */
+function listenToKodi() {
+	var xmlHTTP = new XMLHttpRequest();
+	xmlHTTP.open("GET", "/HDMI1", true);
+	xmlHTTP.send(null);
+
+	playerPower("FRED", "OFF");
+	playerPower("KITCHEN", "OFF");
+	playerPower("LOFT", "OFF");
+	playerPower("WORKSHOP", "OFF");
+	updateControlStates();
+}
+
+/**
+ * Selects the Audio1 input on the Yamaha receiver and turns on all players 
+ * @returns nothing
+ */
+function listenToLMS() {
+	var xmlHTTP = new XMLHttpRequest();
+	xmlHTTP.open("GET", "/AUDIO1", true);
+	xmlHTTP.send(null);
+
+	playerPower("FRED", "ON");
+	playerPower("KITCHEN", "ON");
+	playerPower("LOFT", "ON");
+	playerPower("WORKSHOP", "ON");
+	updateControlStates();
+}
+
+/**
+ * Call the Logitech Media Server with the passed in parameters
+ * @param player the name of the targeted player
+ * @param operation the name of the operation to be performed
+ * @param setting the value to be used for the operation.
+ * @returns the response from the server.
+ */
+function callLMS(player, operation, setting) {
+	var xmlHTTP = new XMLHttpRequest();
+	var params = "player=" + player + "&setting=" + setting;
+
+	xmlHTTP.open("POST", operation, false);
+	xmlHTTP.setRequestHeader("Content-type",
+			"application/x-www-form-urlencoded");
+	xmlHTTP.setRequestHeader("Content-length", params.length);
+
+	var response = "";
+	xmlHTTP.onload = function() {
+		if (XMLHttpRequest.DONE) {
+			response = xmlHTTP.responseText;
+		}
+	}
+
+	xmlHTTP.send(params);
+
+	return response;
+}
+
+/**
+ * Sets or gets the player volume
+ * @param player the name of the player we are targeting
+ * @param setting the volume level to be set, or retrieved if equal to ?
+ * @returns the current volume
+ */
+function playerVolume(player, setting) {
+
+	var response = callLMS(player, "/playerVolume", setting);
+	var result;
+
+	// Example Single digit response
+	// {"method":"slim.request","result":{"_volume":"4"},"params":["00:04:20:07:eb:17",["mixer","volume","?"]],"id":1}
+	var resultIndex = response.search("volume\":");
+	if (resultIndex >= 0) {
+		// Fetch the three possible volume values, from 0 to 100
+		result = response.substring(resultIndex + 9, resultIndex + 9 + 3);
+		if (result.search("\"") == 1) { // Single digit
+			return result.substring(0, 1);
+		} else if (result.search("\"") == 2) { // Double digit
+			return result.substring(0, 2);
+		} else
+			// Must be 100
+			return "100";
+
+	} else
+		return "0";
+}
+
+/**
+ * Sets the requested station to play
+ * @param station the name of the station
+ * @returns nothing
+ */
+function setStation(station) {
+	var xmlHTTP = new XMLHttpRequest();
+	var params = "station=" + station;
+
+	xmlHTTP.open("POST", "/setStation", true);
+	xmlHTTP.setRequestHeader("Content-type",
+			"application/x-www-form-urlencoded");
+
+	xmlHTTP.send(params);
+}
+
+/**
+ * Get the player name by parsing the id of the control
+ * @param control the actual html control
+ * @returns the player name
+ */
+function getPlayerName(control) {
+	var id = $(control).attr("id");
+	if (id.search("Fred") >= 0)
+		return "FRED";
+	else if (id.search("Loft") >= 0)
+		return "LOFT";
+	else if (id.search("Work") >= 0)
+		return "WORKSHOP";
+	else if (id.search("Kitch") >= 0)
+		return "KITCHEN";
+}
+
+/**
+ * Returns the volume control id based matching the player name
+ * @param playerName the requested control id's player name
+ * @returns
+ */
+function getVolumeControlId(playerName) {
+	var volumeControlId;
+
+	if (playerName.search("FRED") >= 0) {
+		volumeControlId = "volumeFred";
+	} else if (playerName.search("KITCHEN") >= 0) {
+		volumeControlId = "volumeKitchen";
+	} else if (playerName.search("LOFT") >= 0) {
+		volumeControlId = "volumeLoft";
+	} else if (playerName.search("WORKSHOP") >= 0) {
+		volumeControlId = "volumeWorkshop";
+	}
+	return volumeControlId;
+}
+
+/**
+ * Switches the squeezebox power on or off.
+ * @param switchControl the control id
+ * @param player the name of the player
+ * @returns nothing
+ */
+function powerSwitch(switchControl, player) {
+	var playerName = getPlayerName(switchControl);
+	var controlTag = "#" + getVolumeControlId(playerName);
+
+	if (switchControl.checked == true) {
+		if (!playerPower(playerName, "?")) {
+			playerPower(player, "ON");
+			$(controlTag).prop('disabled', false);
+			$(controlTag).val(playerVolume(playerName, "?"));
+		}
+	} else {
+		if (playerPower(playerName, "?")) {
+			playerPower(player, "OFF");
+			$(controlTag).prop('disabled', true);
+		}
+	}
+}
+
+/**
+ * Sets or queries the power setting of a player 
+ * @param player the name of the player
+ * @param setting 1 for on, 0 for off, or ? to query the state.
+ * @returns true if on, false if off
+ */
+function playerPower(player, setting) {
+	var response = callLMS(player, "/playerPower", setting);
+	if (response.search("_power\":0") >= 0) {
+		return false;
+	} else
+		return true;
+}
+
+/**
+ * Enables or disables the power and volume controls based on the actual hardware
+ * status.
+ */
+function updateControlStates() {
+	if (playerPower("FRED", "?")) {
+		$("#powerFred").prop('checked', true);
+		$("#volumeFred").prop('disabled', false);
+		$("#volumeFred").val(parseInt(playerVolume("FRED", "?")));
+	} else {
+		$("#powerFred").prop('checked', false);
+		$("#volumeFred").prop('disabled', true);
+	}
+
+	if (playerPower("KITCHEN", "?")) {
+		$("#powerKitchen").prop('checked', true);
+		$("#volumeKitchen").prop('disabled', false);
+		$("#volumeKitchen").val(parseInt(playerVolume("KITCHEN", "?")));
+	} else {
+		$("#powerKitchen").prop('checked', false);
+		$("#volumeKitchen").prop('disabled', true);
+	}
+
+	if (playerPower("LOFT", "?")) {
+		$("#powerLoft").prop('checked', true);
+		$("#volumeLoft").prop('disabled', false);
+		$("#volumeLoft").val(parseInt(playerVolume("LOFT", "?")));
+	} else {
+		$("#powerLoft").prop('checked', false);
+		$("#volumeLoft").prop('disabled', true);
+	}
+
+	if (playerPower("WORKSHOP", "?")) {
+		$("#powerWorkshop").prop('checked', true);
+		$("#volumeWorkshop").prop('disabled', false);
+		$("#volumeWorkshop").val(parseInt(playerVolume("WORKSHOP", "?")));
+	} else {
+		$("#powerWorkshop").prop('checked', false);
+		$("#volumeWorkshop").prop('disabled', true);
+	}
+
+	$("#powerFred").change();
+	$("#volumeFred").change();
+
+	$("#powerKitchen").change();
+	$("#volumeKitchen").change();
+
+	$("#powerLoft").change();
+	$("#volumeLoft").change();
+
+	$("#powerWorkshop").change();
+	$("#volumeWorkshop").change();
+}
