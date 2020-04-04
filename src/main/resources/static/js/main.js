@@ -379,7 +379,7 @@ $(function() {
 	volumeWorkshop.oninput = function() {
 		playerVolume("WORKSHOP", this.value);
 	}
-	
+
 	var volumeKitchen = document.getElementById("volumeKitchen");
 	volumeKitchen.oninput = function() {
 		playerVolume("KITCHEN", this.value);
@@ -387,26 +387,11 @@ $(function() {
 
 	updateControlStates();
 
-	// Set the initial states of the player power switches
-	// and volume controls. If the power is on set the current volume level.
-//	if (playerPower("FRED", "?")) {
-//		$("#powerFred").prop('checked', true);
-//		$("#volumeFred").prop('disabled', false);
-//		$("#volumeFred").val(parseInt(playerVolume("FRED","?")));
-//	}
-//	if (playerPower("KITCHEN", "?")) {
-//		$("#powerKitchen").prop('checked', true);
-//		$("#volumeKitchen").prop('disabled', false);
-//		$("#volumeKitchen").val(parseInt(playerVolume("KITCHEN","?")));
-//	}
-//	if (playerPower("LOFT", "?")) {
-//		$("#powerLoft").prop('checked', true);
-//		$("#volumeLoft").prop('disabled', false);
-//		$("#volumeLoft").val(parseInt(playerVolume("LOFT","?")));
-//	}
-//	if (playerPower("WORKSHOP", "?")) {
-//		$("#powerWorkshop").prop('checked', true);
-//		$("#volumeWorkshop").prop('disabled', false);
-//		$("#volumeWorkshop").val(parseInt(playerVolume("WORKSHOP","?")));
-//	}
+	function updateNowPlaying() {
+		setInterval(function() {
+			updateTrackInfo();
+		}, 5000);
+	}
+
+	window.lonload = updateNowPlaying();
 });

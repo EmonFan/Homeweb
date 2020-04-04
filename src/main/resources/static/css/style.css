@@ -771,7 +771,7 @@ p {
   z-index: -1; }
 
 .header-hero-content {
-  padding-top: 180px; }
+  padding-top: 80px; }
   @media (max-width: 767px) {
     .header-hero-content {
       padding-top: 100px; } }

@@ -66,6 +66,20 @@ public class LmsRequest {
 	 * Constructs a valid String to query the volume on the player
 	 */
 	public static JSONObject playerVolume(String playerName, String setting) {
+		
+		final String playerMacAddress = getPlayerMac(playerName);
+		
+		final String lmsCommand;
+		if ("?".equalsIgnoreCase(setting)) {
+			lmsCommand = PREAMBLE + playerMacAddress + MIXER + VOLUME + QUESTION + EPILOG;
+		} else {
+			lmsCommand = PREAMBLE + playerMacAddress + MIXER + VOLUME + ",\"" + setting +"\"" + EPILOG;
+		}
+
+		return new JSONObject(lmsCommand);
+	}
+
+	private static String getPlayerMac(String playerName) {
 		final String playerMacAddress;
 		
 		if (PLAYER_FRED.equals(playerName)) {
@@ -80,49 +94,22 @@ public class LmsRequest {
 			playerMacAddress = PLAYER_FRED_MAC;
 		}
 
-		final String lmsCommand;
-		if ("?".equalsIgnoreCase(setting)) {
-			lmsCommand = PREAMBLE + playerMacAddress + MIXER + VOLUME + QUESTION + EPILOG;
-		} else {
-			lmsCommand = PREAMBLE + playerMacAddress + MIXER + VOLUME + ",\"" + setting +"\"" + EPILOG;
-		}
-
-		return new JSONObject(lmsCommand);
+		return playerMacAddress;
 	}
-
-	/*
-	 * Constructs a valid String to set the volume on the player
-	 */
-	public static JSONObject setVolume(String macAddress, String value) {
-		return new JSONObject(PREAMBLE + macAddress + MIXER + VOLUME + VALUE_PROLOG + value + VALUE_EPILOG + EPILOG);
-	}
-
-	/*
-	 * Constructs a valid String to increase the volume on the player
-	 */
-	public static JSONObject volumeUp(String macAddress) {
-		return new JSONObject(PREAMBLE + macAddress + BUTTON + VOLUME_UP + EPILOG);
-	}
-
-	/*
-	 * Constructs a valid String to decrease the volume on the player
-	 */
-	public static JSONObject volumeDn(String macAddress) {
-		return new JSONObject(PREAMBLE + macAddress + BUTTON + VOLUME_DN + EPILOG);
-	}
-
 	/*
 	 * Constructs a valid String to return the currently playing track artist
 	 */
-	public static JSONObject getArtist(String macAddress) {
-		return new JSONObject(PREAMBLE + macAddress + ARTIST + QUESTION + EPILOG);
+	public static JSONObject getArtist(String playerName) {
+		final String playerMacAddress = getPlayerMac(playerName);
+		return new JSONObject(PREAMBLE + playerMacAddress + ARTIST + QUESTION + EPILOG);
 	}
 
 	/*
 	 * Constructs a valid String to return the currently playing track title
 	 */
-	public static JSONObject getTitle(String macAddress) {
-		return new JSONObject(PREAMBLE + macAddress + TITLE + QUESTION + EPILOG);
+	public static JSONObject getTitle(String playerName) {
+		final String playerMacAddress = getPlayerMac(playerName);
+		return new JSONObject(PREAMBLE + playerMacAddress + TITLE + QUESTION + EPILOG);
 	}
 
 	/*
@@ -148,19 +135,7 @@ public class LmsRequest {
 	}
 
 	public static JSONObject playerPower(String playerName, String setting) {
-		final String playerMacAddress;
-		
-		if (PLAYER_FRED.equals(playerName)) {
-			playerMacAddress = PLAYER_FRED_MAC;
-		} else if (PLAYER_KITCHEN.equals(playerName)) {
-			playerMacAddress = PLAYER_KITCHEN_MAC;
-		} else if (PLAYER_LOFT.equals(playerName)) {
-			playerMacAddress = PLAYER_LOFT_MAC;
-		} else if (PLAYER_WORKSHOP.equals(playerName)) {
-			playerMacAddress = PLAYER_WORKSHOP_MAC;
-		} else {
-			playerMacAddress = PLAYER_FRED_MAC;
-		}
+		final String playerMacAddress = getPlayerMac(playerName);
 
 		final String lmsCommand;
 
