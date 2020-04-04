@@ -1,35 +1,34 @@
 package com.example.demo.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.rest.Greeting;
 import com.example.demo.rest.LmsRequest;
 
 @RestController
 public class MyRestController {
 
-	private static final String template = "Hello, %s!";
-	private final AtomicLong counter = new AtomicLong();
 	private LmsRequest LMS = new LmsRequest();
 
 	@PostMapping("/artist")
-	public String getArtist(Model model) {
+	public ResponseEntity<String> getArtist(
+			@RequestParam(value = "player", defaultValue = LmsRequest.PLAYER_FRED) String playerName,
+			@RequestParam(value = "setting") String setting) {
 
-		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.getArtist(LmsRequest.PLAYER_FRED_MAC));
-		return "redirect:/#audio";
+		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.getArtist(playerName));
+		return response;
 	}
 
 	@PostMapping("/title")
-	public String getTitle(Model model) {
+	public ResponseEntity<String> getTitle(
+			@RequestParam(value = "player", defaultValue = LmsRequest.PLAYER_FRED) String playerName,
+			@RequestParam(value = "setting") String setting) {
 
-		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.getTitle(LmsRequest.PLAYER_FRED_MAC));
-		return "redirect:/#audio";
+		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.getTitle(playerName));
+		return response;
 	}
 
 	@PostMapping("/album")
@@ -46,6 +45,14 @@ public class MyRestController {
 		return "redirect:/#audio";
 	}
 
+	@PostMapping("/setStation")
+	public ResponseEntity<String> setStation(
+			@RequestParam(value = "station", defaultValue = LmsRequest.CLASSIC_ROCK) String stationName) {
+
+		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.playStation(stationName));
+		return response;
+	}
+
 	@PostMapping("/playerVolume")
 	public ResponseEntity<String> playerVolume(
 			@RequestParam(value = "player", defaultValue = LmsRequest.PLAYER_FRED) String playerName,
@@ -53,20 +60,6 @@ public class MyRestController {
 
 		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.playerVolume(playerName, setting));
 		return response;
-	}
-
-	@PostMapping("/setVolume")
-	public String setVolume(Model model) {
-
-		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.setVolume(LmsRequest.PLAYER_FRED_MAC, "50"));
-		return "redirect:/#audio";
-	}
-
-	@PostMapping("/setStation")
-	public void setStation(
-			@RequestParam(value = "station", defaultValue = LmsRequest.CLASSIC_ROCK) String stationName) {
-
-		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.playStation(stationName));
 	}
 
 	@PostMapping("/playerPower")

@@ -18,7 +18,7 @@ public class YamahaRequest {
 	private static final int PORT = 50000;
 	private static final String HOSTNAME = "RX-A830.athome";
 	private static final String HDMI1 = "HDMI1";
-	private static final String AUDIO1 = "AUDIO1";
+	private static final String HDMI2 = "HDMI2";
 	private static final String STANDARD = "Standard";
 	private static final String ON = "On";
 	private static final String OFF = "Off";
@@ -118,10 +118,11 @@ public class YamahaRequest {
 		return result;
 	}
 
+	//Selects HDMI2 with AUDIO1 as input
 	public static String setAudio1(){
 		final String result;
-		if (!getInput().contains(AUDIO1)) {
-			result = callYamaha(INPUT, AUDIO1);
+		if (!getInput().contains(HDMI2)) {
+			result = callYamaha(INPUT, HDMI2);
 		} else {
 			result = "";
 		}

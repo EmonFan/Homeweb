@@ -233,3 +233,39 @@ function updateControlStates() {
 	$("#powerWorkshop").change();
 	$("#volumeWorkshop").change();
 }
+
+	//declare some globals for artist and title
+//	var artist = "";
+//	var title = "";
+	
+function updateTrackInfo() {
+
+//	Artist: {"method":"slim.request","result":{"_artist":"Beatles"},"params":["00:04:20:07:eb:17",["artist","?"]],"id":1}
+//	 Title: {"method":"slim.request","params":["00:04:20:07:eb:17",["title","?"]],"result":{"_title":"Come Together "},"id":1}
+	
+	var artist = callLMS("FRED", "/artist", "?");
+	var title = callLMS("FRED", "/title", "?");
+
+	var startIndex = artist.indexOf("_artist\"");
+	var stopIndex = artist.indexOf("}", startIndex);
+	
+	artist = artist.substring(startIndex+10, stopIndex-1);
+	
+	startIndex = title.indexOf("_title\"");
+	stopIndex = title.indexOf("}", startIndex);
+	
+	title = title.substring(startIndex+9, stopIndex-1);
+	
+//	alert("Artist: "+artist+" Title: "+title);
+
+//	<strong>Playing:&nbsp;</strong>	Against The Wind<strong><br>by:&nbsp;</strong> Bob Seger &	The Silver Bullet Band</a>
+
+	artist.replace("\"","");
+	title.replace("\"","");
+
+	var html = "<strong>Playing:&nbsp;</strong>__title__<strong><br>by:&nbsp;</strong>__artist__</a>"
+	html = html.replace("__title__", title);
+	html = html.replace("__artist__", artist);
+	
+	$("#trackInfo").html(html);
+}
