@@ -60,6 +60,7 @@ public class LmsRequest {
 
 	private final RestTemplate restTemplate = new RestTemplate();
 	private static final String LMS_URL = "http://squeezer.athome:9000/jsonrpc.js";
+	private static final String FWD = ",\"fwd\"";
 	private final HttpHeaders headers = new HttpHeaders();
 
 	/*
@@ -132,6 +133,20 @@ public class LmsRequest {
 	 */
 	public static JSONObject powerToggle(String macAddress) {
 		return new JSONObject(PREAMBLE + macAddress + BUTTON + POWER + EPILOG);
+	}
+
+	/*
+	 * Constructs a valid String to skip to the next song in the playlist
+	 */
+	public static JSONObject nextSong(String playerName) {
+		return new JSONObject(PREAMBLE + getPlayerMac(playerName) + BUTTON + FWD + EPILOG);
+	}
+
+	/*
+	 * Constructs a valid String to skip to the next song in the playlist
+	 */
+	public static JSONObject playerPlay(String playerName) {
+		return new JSONObject(PREAMBLE + getPlayerMac(playerName) + BUTTON + PLAY + EPILOG);
 	}
 
 	public static JSONObject playerPower(String playerName, String setting) {

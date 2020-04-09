@@ -70,4 +70,22 @@ public class MyRestController {
 		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.playerPower(playerName, setting));
 		return response;
 	}
+
+	@PostMapping("/nextSong")
+	public ResponseEntity<String> nextSong(
+			@RequestParam(value = "player", defaultValue = LmsRequest.PLAYER_FRED) String playerName,
+			@RequestParam(value = "setting") String setting) {
+
+		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.nextSong(playerName));
+		return response;
+	}
+
+	@PostMapping("/playButton")
+	public ResponseEntity<String> playButton(
+			@RequestParam(value = "player", defaultValue = LmsRequest.PLAYER_FRED) String playerName,
+			@RequestParam(value = "setting") String setting) {
+
+		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.nextSong(playerName));
+		return response;
+	}
 }
