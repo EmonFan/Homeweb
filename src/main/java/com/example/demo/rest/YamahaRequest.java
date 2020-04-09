@@ -149,7 +149,6 @@ public class YamahaRequest {
 			int bytes = socket.getInputStream().read(data, 0, data.length);
 			response = new String(data, 0, bytes, "ASCII");
 
-			System.out.println(response);
 			socketWriter.close();
 			socket.close();
 

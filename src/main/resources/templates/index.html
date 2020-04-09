@@ -90,20 +90,26 @@
 							<div class="collapse navbar-collapse sub-menu-bar"
 								id="navbarSupportedContent">
 								<ul id="nav" class="navbar-nav ml-auto">
-									<li class="nav-item active pull-left"><a
-										class="page-scroll" id="trackInfo"><strong>Playing:&nbsp;</strong>
+									<li class="nav-item active pull-left"><a id="trackInfo"><strong>Playing:&nbsp;</strong>
 											No Title<strong><br>by:&nbsp;</strong>No Artist</a></li>
-									<li class="nav-item active"><a class="page-scroll"
-										href="#home">Home</a></li>
-									<li class="nav-item"><a class="page-scroll" href="#audio">Audio</a></li>
+									<li class="nav-item active pull-left"><a
+										onclick="nextSong()" href="javascript:void(0)">Skip
+											&gt;&gt;</a>
+									<li class="nav-item active">
+									<li class="nav-item"><a class="page-scroll" href="#home">Home</a>
+									</li>
+									<li class="nav-item"><a class="page-scroll" href="#audio">Audio</a>
+									</li>
 									<li class="nav-item"><a class="page-scroll"
 										href="#stations">Stations</a></li>
 									<li class="nav-item"><a class="page-scroll"
 										href="#players">Players</a></li>
 									<li class="nav-item"><a class="page-scroll"
 										href="#weather">Weather</a></li>
-									<li class="nav-item"><a class="page-scroll" href="#house">House</a>
-									</li>
+                                    <li class="nav-item"><a class="page-scroll"
+                                        href="#servers">Servers</a></li>
+                                    <li class="nav-item"><a class="page-scroll"
+                                        href="#cameras">Cameras</a></li>
 								</ul>
 							</div>
 							<!-- navbar collapse -->
@@ -388,7 +394,12 @@
 									class="switch-handle"></span>
 								</label>
 							</div>
-							<div class="col-lg-8">
+							<div>
+								<button class="btn btn-primary" style="margin-top: 28px"
+									type="button" id="playFred" onClick="playButton(this, 'FRED')">
+									Play</button>
+							</div>
+							<div class="col-lg-7">
 								<label class="slidecontainer"> <input disabled
 									class="slider" type="range" id="volumeFred" min="0" max="100">
 								</label>
@@ -415,7 +426,12 @@
 									class="switch-handle"></span>
 								</label>
 							</div>
-							<div class="col-lg-8">
+							<div>
+								<button class="btn btn-primary" style="margin-top: 28px"
+									type="button" id="playFred" onClick="playButton(this, 'LOFT')">
+									Play</button>
+							</div>
+							<div class="col-lg-7">
 								<label class="slidecontainer"> <input disabled
 									class="slider" type="range" id="volumeLoft" min="0" max="100">
 								</label>
@@ -442,7 +458,12 @@
 									class="switch-handle"></span>
 								</label>
 							</div>
-							<div class="col-lg-8">
+							<div>
+								<button class="btn btn-primary" style="margin-top: 28px"
+									type="button" id="playFred"
+									onClick="playButton(this, 'WORKSHOP')">Play</button>
+							</div>
+							<div class="col-lg-7">
 								<label class="slidecontainer"> <input disabled
 									class="slider" type="range" id="volumeWorkshop" min="0"
 									max="100">
@@ -470,7 +491,12 @@
 									class="switch-handle"></span>
 								</label>
 							</div>
-							<div class="col-lg-8">
+							<div>
+								<button class="btn btn-primary" style="margin-top: 28px"
+									type="button" id="playFred"
+									onClick="playButton(this, 'KITCHEN')">Play</button>
+							</div>
+							<div class="col-lg-7">
 								<label class="slidecontainer"> <input disabled
 									class="slider" type="range" id="volumeKitchen" min="0"
 									max="100">
@@ -572,9 +598,9 @@
 
 	<!--====== WEATHER PART ENDS ======-->
 
-	<!--====== ABOUT PART START ======-->
+	<!--====== SERVERS PART START ======-->
 
-	<section class="about-area pt-70">
+	<section class="about-area pt-70" id="servers">
 		<div class="about-shape-2">
 			<img src="images/about-shape-2.svg" alt="shape">
 		</div>
@@ -585,20 +611,31 @@
 						data-wow-duration="1s" data-wow-delay="0.5s">
 						<div class="section-title">
 							<div class="line"></div>
-							<h3 class="title">
-								Modern design <span> with Essential Features</span>
-							</h3>
+							<h3 class="title">Local Servers</h3>
 						</div>
 						<!-- section title -->
-						<p class="text" id="dial_1">There is no text</p>
-						<a href="#" class="main-btn">Try it Free</a>
+						<a
+							href="http://dockerhost.athome:9091/transmission/web/"
+							target="_blank" class="main-btn">Transmission</a> <a
+							href="http://dockerhost.athome:32400/web/index.html"
+							target="_blank" class="main-btn">Plex</a> <a
+							href="http://dockerhost.athome:8088/dashboard/" target="_blank"
+							class="main-btn">Traefik</a> <a href="http://dockerhost.athome:8989/"
+							target="_blank" class="main-btn">Sonarr</a> <a
+							href="http://dockerhost.athome:7878/" target="_blank" class="main-btn">Radarr</a>
+						<a href="http://dockerhost.athome:8181/home" target="_blank"
+							class="main-btn">Tautulli</a> <a
+							href="http://dockerhost.athome:9000/#/home"
+							target="_blank" class="main-btn">Portainer</a> <a
+							href="http://squeezer.athome:9000/" target="_blank"
+							class="main-btn">LMS</a>
 					</div>
 					<!-- about content -->
 				</div>
 				<div class="col-lg-6 order-lg-first">
 					<div class="about-image text-center mt-50 wow fadeInRightBig"
 						data-wow-duration="1s" data-wow-delay="0.5s">
-						<img src="images/squeezebox_180.png" alt="about">
+						<img src="images/Server_Rack.jpg" alt="about">
 					</div>
 					<!-- about image -->
 				</div>
@@ -608,7 +645,11 @@
 		<!-- container -->
 	</section>
 
-	<section class="about-area pt-70">
+	<!--====== SERVERS PART ENDS ======-->
+
+	<!--====== CAMERAS PART START ======-->
+
+	<section class="about-area pt-70" id="cameras">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
@@ -616,35 +657,38 @@
 						data-wow-duration="1s" data-wow-delay="0.5s">
 						<div class="section-title">
 							<div class="line"></div>
-							<h3 class="title">
-								<span>Crafted for</span> SaaS, App and Software Landing Page
-							</h3>
+							<h3 class="title">Security Cameras</h3>
 						</div>
 						<!-- section title -->
-						<p class="text">No text here.</p>
-						<a href="#" class="main-btn">Try it Free</a>
+                        <a href="http://192.168.0.61"
+                            target="_blank" class="main-btn">Cam-1</a>
+                        <a href="http://192.168.0.62"
+                            target="_blank" class="main-btn">Cam-2</a>
+                        <a href="http://192.168.0.63"
+                            target="_blank" class="main-btn">Cam-3</a>
+                        <a href="http://192.168.0.64"
+                            target="_blank" class="main-btn">Cam-4</a>
+                        <a href="http://192.168.0.65"
+                            target="_blank" class="main-btn">Cam-5</a>
+                        <a href="http://192.168.0.66"
+                            target="_blank" class="main-btn">Cam-6</a>
 					</div>
 					<!-- about content -->
 				</div>
 				<div class="col-lg-6">
-					<section>
-						<label class="switch"> <input class="switch-input"
-							type="checkbox" /> <span class="switch-label" data-on="On"
-							data-off="Off"></span> <span class="switch-handle"></span>
-						</label>
-					</section>
+					<div class="about-image text-center mt-50 wow fadeInRightBig"
+						data-wow-duration="1s" data-wow-delay="0.5s">
+						<img src="images/axis_camera.png" alt="about">
+					</div>
 					<!-- about image -->
 				</div>
 			</div>
 			<!-- row -->
 		</div>
 		<!-- container -->
-		<div class="about-shape-1">
-			<img src="images/about-shape-1.svg" alt="shape">
-		</div>
 	</section>
 
-	<!--====== ABOUT PART ENDS ======-->
+	<!--====== CAMERAS PART ENDS ======-->
 
 	<!--====== BACK TOP TOP PART START ======-->
 

@@ -46,7 +46,6 @@ function callLMS(player, operation, setting) {
 	xmlHTTP.open("POST", operation, false);
 	xmlHTTP.setRequestHeader("Content-type",
 			"application/x-www-form-urlencoded");
-	xmlHTTP.setRequestHeader("Content-length", params.length);
 
 	var response = "";
 	xmlHTTP.onload = function() {
@@ -234,10 +233,6 @@ function updateControlStates() {
 	$("#volumeWorkshop").change();
 }
 
-	//declare some globals for artist and title
-//	var artist = "";
-//	var title = "";
-	
 function updateTrackInfo() {
 
 //	Artist: {"method":"slim.request","result":{"_artist":"Beatles"},"params":["00:04:20:07:eb:17",["artist","?"]],"id":1}
@@ -268,4 +263,14 @@ function updateTrackInfo() {
 	html = html.replace("__artist__", artist);
 	
 	$("#trackInfo").html(html);
+}
+
+function nextSong() {
+	callLMS("FRED", "/nextSong", "");
+}
+
+function playButton(switchControl, player) {
+	var playerName = getPlayerName(switchControl);
+	
+	callLMS(playerName, "/playButton", "");
 }
