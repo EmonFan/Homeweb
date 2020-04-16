@@ -42,6 +42,8 @@
 <link rel="stylesheet" href="css/base_switch.css">
 <link rel="stylesheet" href="css/switch.css">
 
+<!--====== Player CSS ======-->
+<link rel="stylesheet" href="css/player.css">
 </head>
 
 <body>
@@ -106,10 +108,10 @@
 										href="#players">Players</a></li>
 									<li class="nav-item"><a class="page-scroll"
 										href="#weather">Weather</a></li>
-                                    <li class="nav-item"><a class="page-scroll"
-                                        href="#servers">Servers</a></li>
-                                    <li class="nav-item"><a class="page-scroll"
-                                        href="#cameras">Cameras</a></li>
+									<li class="nav-item"><a class="page-scroll"
+										href="#servers">Servers</a></li>
+									<li class="nav-item"><a class="page-scroll"
+										href="#cameras">Cameras</a></li>
 								</ul>
 							</div>
 							<!-- navbar collapse -->
@@ -371,8 +373,11 @@
 					<div class="section-title text-center pb-30">
 						<div class="line m-auto"></div>
 						<h3 class="title">
-							<span>Control the players.</span>
+							<span>Player controls</span>
 						</h3>
+						<div class="team-image">
+							<img src="images/squeezebox_180.png" alt="Team">
+						</div>
 					</div>
 					<!-- section title -->
 				</div>
@@ -382,27 +387,32 @@
 				<div class="col-lg-6 col-md-7 col-sm-8">
 					<div class="single-team text-center mt-30 wow fadeIn"
 						data-wow-duration="1s" data-wow-delay="0.2s">
-						<div class="team-image">
-							<img src="images/squeezebox_180.png" alt="Team">
-						</div>
 						<div class="row justify-content-center">
-							<div class="team-content">
-								<label class="switch"> <input class="switch-input"
-									type="checkbox" id="powerFred"
-									onClick="powerSwitch(this, 'FRED')" /> <span
-									class="switch-label" data-on="On" data-off="Off"></span> <span
-									class="switch-handle"></span>
-								</label>
-							</div>
-							<div>
-								<button class="btn btn-primary" style="margin-top: 28px"
-									type="button" id="playFred" onClick="playButton(this, 'FRED')">
-									Play</button>
-							</div>
-							<div class="col-lg-7">
-								<label class="slidecontainer"> <input disabled
-									class="slider" type="range" id="volumeFred" min="0" max="100">
-								</label>
+							<div class="player">
+								<div class="info">
+									<div>
+										<label class="slidecontainer"> <input disabled
+											class="slider" type="range" id="volumeFred" min="0" max="100">
+										</label>
+									</div>
+									<div class="controls" id="controlsFred">
+										<div class="power" id="powerFred">
+											<i class="fa fa-power-off"></i>
+										</div>
+										<div class="previous" id="prevFred">
+											<i class="fa fa-fast-backward"></i>
+										</div>
+										<div class="play" id="playFred">
+											<i class="fa fa-play"></i>
+										</div>
+										<div class="pause" id="pauseFred">
+											<i class="fa fa-pause"></i>
+										</div>
+										<div class="next" id="nextFred">
+											<i class="fa fa-fast-forward"></i>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<h5 class="holder-name">
@@ -414,27 +424,32 @@
 				<div class="col-lg-6 col-md-7 col-sm-8">
 					<div class="single-team text-center mt-30 wow fadeIn"
 						data-wow-duration="1s" data-wow-delay="0.5s">
-						<div class="team-image">
-							<img src="images/squeezebox_180.png" alt="Team">
-						</div>
 						<div class="row justify-content-center">
-							<div class="team-content">
-								<label class="switch"> <input class="switch-input"
-									type="checkbox" id="powerLoft"
-									onClick="powerSwitch(this, 'LOFT')" /> <span
-									class="switch-label" data-on="On" data-off="Off"></span> <span
-									class="switch-handle"></span>
-								</label>
-							</div>
-							<div>
-								<button class="btn btn-primary" style="margin-top: 28px"
-									type="button" id="playFred" onClick="playButton(this, 'LOFT')">
-									Play</button>
-							</div>
-							<div class="col-lg-7">
-								<label class="slidecontainer"> <input disabled
-									class="slider" type="range" id="volumeLoft" min="0" max="100">
-								</label>
+							<div class="player">
+								<div class="info">
+									<div>
+										<label class="slidecontainer"> <input disabled
+											class="slider" type="range" id="volumeLoft" min="0" max="100">
+										</label>
+									</div>
+									<div class="controls">
+										<div class="power" id="powerLoft">
+											<i class="fa fa-power-off"></i>
+										</div>
+										<div class="previous" id="prevLot">
+											<i class="fa fa-fast-backward"></i>
+										</div>
+										<div class="play" id="playLoft">
+											<i class="fa fa-play"></i>
+										</div>
+										<div class="pause" id="pauseLoft">
+											<i class="fa fa-pause"></i>
+										</div>
+										<div class="next" id="nextLoft">
+											<i class="fa fa-fast-forward"></i>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<h5 class="holder-name">
@@ -446,28 +461,33 @@
 				<div class="col-lg-6 col-md-7 col-sm-8">
 					<div class="single-team text-center mt-30 wow fadeIn"
 						data-wow-duration="1s" data-wow-delay="0.8s">
-						<div class="team-image">
-							<img src="images/squeezebox_180.png" alt="Team">
-						</div>
 						<div class="row justify-content-center">
-							<div class="team-content">
-								<label class="switch"> <input class="switch-input"
-									type="checkbox" id="powerWorkshop"
-									onClick="powerSwitch(this, 'WORKSHOP')" /> <span
-									class="switch-label" data-on="On" data-off="Off"></span> <span
-									class="switch-handle"></span>
-								</label>
-							</div>
-							<div>
-								<button class="btn btn-primary" style="margin-top: 28px"
-									type="button" id="playFred"
-									onClick="playButton(this, 'WORKSHOP')">Play</button>
-							</div>
-							<div class="col-lg-7">
-								<label class="slidecontainer"> <input disabled
-									class="slider" type="range" id="volumeWorkshop" min="0"
-									max="100">
-								</label>
+							<div class="player">
+								<div class="info">
+									<div>
+										<label class="slidecontainer"> <input disabled
+											class="slider" type="range" id="volumeWorkshop" min="0"
+											max="100">
+										</label>
+									</div>
+									<div class="controls">
+										<div class="power" id="powerWorkshop">
+											<i class="fa fa-power-off"></i>
+										</div>
+										<div class="previous" id="prevWorkshop">
+											<i class="fa fa-fast-backward"></i>
+										</div>
+										<div class="play" id="playWorkshop">
+											<i class="fa fa-play"></i>
+										</div>
+										<div class="pause" id="pauseWorkshop">
+											<i class="fa fa-pause"></i>
+										</div>
+										<div class="next" id="nextWorkshop">
+											<i class="fa fa-fast-forward"></i>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<h5 class="holder-name">
@@ -479,36 +499,41 @@
 				<div class="col-lg-6 col-md-7 col-sm-8">
 					<div class="single-team text-center mt-30 wow fadeIn"
 						data-wow-duration="1s" data-wow-delay="0.8s">
-						<div class="team-image">
-							<img src="images/squeezebox_180.png" alt="Team">
-						</div>
 						<div class="row justify-content-center">
-							<div class="team-content">
-								<label class="switch"> <input class="switch-input"
-									type="checkbox" id="powerKitchen"
-									onClick="powerSwitch(this, 'KITCHEN')" /> <span
-									class="switch-label" data-on="On" data-off="Off"></span> <span
-									class="switch-handle"></span>
-								</label>
-							</div>
-							<div>
-								<button class="btn btn-primary" style="margin-top: 28px"
-									type="button" id="playFred"
-									onClick="playButton(this, 'KITCHEN')">Play</button>
-							</div>
-							<div class="col-lg-7">
-								<label class="slidecontainer"> <input disabled
-									class="slider" type="range" id="volumeKitchen" min="0"
-									max="100">
-								</label>
+							<div class="player">
+								<div class="info">
+									<div>
+										<label class="slidecontainer"> <input disabled
+											class="slider" type="range" id="volumeKitchen" min="0"
+											max="100">
+										</label>
+									</div>
+									<div class="controls" id="playerControlsKitchen">
+										<div class="power" id="powerKitchen">
+											<i class="fa fa-power-off"></i>
+										</div>
+											<div class="previous" id="prevKitchen">
+												<i class="fa fa-fast-backward"></i>
+											</div>
+											<div class="play" id="playKitchen">
+												<i class="fa fa-play"></i>
+											</div>
+											<div class="pause" id="pauseKitchen">
+												<i class="fa fa-pause"></i>
+											</div>
+											<div class="next" id="nextKitchen">
+												<i class="fa fa-fast-forward"></i>
+											</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<h5 class="holder-name">
 							<a>Kitchen Player</a>
 						</h5>
 					</div>
+					<!-- single team -->
 				</div>
-				<!-- single team -->
 			</div>
 		</div>
 		<!-- row -->
@@ -614,21 +639,28 @@
 							<h3 class="title">Local Servers</h3>
 						</div>
 						<!-- section title -->
-						<a
-							href="http://dockerhost.athome:9091/transmission/web/"
+						<a href="http://dockerhost.athome:9091/transmission/web/"
 							target="_blank" class="main-btn">Transmission</a> <a
 							href="http://dockerhost.athome:32400/web/index.html"
 							target="_blank" class="main-btn">Plex</a> <a
 							href="http://dockerhost.athome:8088/dashboard/" target="_blank"
-							class="main-btn">Traefik</a> <a href="http://dockerhost.athome:8989/"
-							target="_blank" class="main-btn">Sonarr</a> <a
-							href="http://dockerhost.athome:7878/" target="_blank" class="main-btn">Radarr</a>
-						<a href="http://dockerhost.athome:8181/home" target="_blank"
+							class="main-btn">Traefik</a> <a
+							href="http://dockerhost.athome:8989/" target="_blank"
+							class="main-btn">Sonarr</a> <a
+							href="http://dockerhost.athome:7878/" target="_blank"
+							class="main-btn">Radarr</a> <a
+							href="http://dockerhost.athome:8181/home" target="_blank"
 							class="main-btn">Tautulli</a> <a
-							href="http://dockerhost.athome:9000/#/home"
-							target="_blank" class="main-btn">Portainer</a> <a
+							href="http://dockerhost.athome:9000/#/home" target="_blank"
+							class="main-btn">Portainer</a> <a
 							href="http://squeezer.athome:9000/" target="_blank"
-							class="main-btn">LMS</a>
+							class="main-btn">LMS</a> <a
+							href="http://192.168.0.57/admin" target="_blank"
+							class="main-btn">PBX</a> <a
+							href="https://proxmox.athome:8006" target="_blank"
+							class="main-btn">Proxmox</a> <a
+							href="http://192.168.0.1" target="_blank"
+							class="main-btn">Firewall</a>
 					</div>
 					<!-- about content -->
 				</div>
@@ -660,18 +692,12 @@
 							<h3 class="title">Security Cameras</h3>
 						</div>
 						<!-- section title -->
-                        <a href="http://192.168.0.61"
-                            target="_blank" class="main-btn">Cam-1</a>
-                        <a href="http://192.168.0.62"
-                            target="_blank" class="main-btn">Cam-2</a>
-                        <a href="http://192.168.0.63"
-                            target="_blank" class="main-btn">Cam-3</a>
-                        <a href="http://192.168.0.64"
-                            target="_blank" class="main-btn">Cam-4</a>
-                        <a href="http://192.168.0.65"
-                            target="_blank" class="main-btn">Cam-5</a>
-                        <a href="http://192.168.0.66"
-                            target="_blank" class="main-btn">Cam-6</a>
+						<a href="http://192.168.0.61" target="_blank" class="main-btn">Cam-1</a>
+						<a href="http://192.168.0.62" target="_blank" class="main-btn">Cam-2</a>
+						<a href="http://192.168.0.63" target="_blank" class="main-btn">Cam-3</a>
+						<a href="http://192.168.0.64" target="_blank" class="main-btn">Cam-4</a>
+						<a href="http://192.168.0.65" target="_blank" class="main-btn">Cam-5</a>
+						<a href="http://192.168.0.66" target="_blank" class="main-btn">Cam-6</a>
 					</div>
 					<!-- about content -->
 				</div>
@@ -736,5 +762,7 @@
 	<!--====== Main js ======-->
 	<script src="js/main.js"></script>
 
+	<!--====== Player js ======-->
+	<script src="js/player.js"></script>
 </body>
 </html>

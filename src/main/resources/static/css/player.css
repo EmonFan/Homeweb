@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css?family=Questrial");
+
+.player {
+  background: #FFFFFF;
+  position: relative;
+  margin-top: 15px;
+  width: 80%;
+  height: 115px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px rgba(54, 79, 60, 0.4);
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+.clicked {
+  color: #49654D;
+  transform: scale(1.2);
+  transition: all .4s ease;
+  opacity:1;
+}
+
+.info {
+  height: 140px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.progress-bar {
+  height: 5px;
+  width: 73%;
+  margin: 6% auto;
+  background: #cdd9c2;
+  border-radius: 10px;
+  font-family: "Questrial", sans-serif;
+}
+
+.fill {
+  background-color: #8BA989;
+  width: 35%;
+  height: 0.3rem;
+  border-radius: 2px;
+}
+
+.time--current, .time--total {
+    color: #364F3C;
+    font-size: 15px;
+    position: absolute;
+    margin-top: -2px;
+  }
+  
+  .time--current {
+    left: 15px;
+  }
+  
+  .time--total {
+    right: 15px;
+  }
+  
+  .currently-playing {
+    text-align: center;
+    margin-top: -3px;
+  }
+  
+.song-name, .artist-name {
+  font-family: "Questrial", sans-serif;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  font-size: 1.8em;
+  justify-content: center;
+  color: #8BA989;
+}
+.controls .play, .controls .pause {
+  margin: 15px 25px;
+  color: #6e946c;
+}
+
+.controls .power {
+  left: 10px;
+  position: absolute;
+  font-size: 1.8em;
+}
+
+.controls .volume {
+  margin-right: 30px;
+  font-size: 1.8em;
+}
+
+.play, .pause, .next, .previous, .volume, .power, .slider {
+	transition: all .5s ease;
+}
+
+.play:hover, .pause:hover, .next:hover, .previous:hover, .power:hover {
+  color: #557c5f;
+}
+
+/* Volume slider */
+.slidecontainer {
+    width: 80%; /* Width of the outside container */
+    margin-left: 35px;
+  }
+  
+  /* The slider itself */
+  .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 15px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    margin-top: 38px;
+    border-radius: 5px;
+  }
+  
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%;
+  }
+  
+ .slider:disabled {
+ 	opacity: 0.2;
+ }  
+  
