@@ -219,6 +219,21 @@ function updateTrackInfo() {
 	html = html.replace("__artist__", artist);
 
 	$("#trackInfo").html(html);
+
+	updateTemperatures();
+}
+
+function updateTemperatures() {
+
+	url = "http://emoncms.athome/emoncms/feed/value.json?";
+	$.get(url, {
+		id : 15,
+		apikey : "d460194eaa7cc9012c9bf285de892fcd"
+	}, function(response) {
+
+		var html = "Outdoor:&nbsp;<strong>" + response + "&nbsp;C</strong></a>"
+		$("#currentTemp").html(html);
+	});
 }
 
 function nextSong() {
