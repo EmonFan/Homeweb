@@ -13,17 +13,57 @@ $('.pause').hide(); // hide pause button until clicked
 
 // play button
 $('.play').click(function() {
-	// audio.play();
-	$('.play').hide();
-	$('.pause').show();
+	var playerName = getPlayerNameById($(this).attr("id"));
+	// Find the button that starts with pause
+	toggleButton(this, "[id^=pause]");
+
+	playButton(getPlayerNameById($(this).attr("id")));
+});
+
+//next button
+$('.next').click(function() {
+	var playerName = getPlayerNameById($(this).attr("id"));
+	// Find the button that starts with pause
+	// updatePlayerControls();
+
+	skipNext(getPlayerNameById($(this).attr("id")));
+});
+
+//next button
+$('.previous').click(function() {
+	var playerName = getPlayerNameById($(this).attr("id"));
+	// Find the button that starts with pause
+	// updatePlayerControls();
+
+	skipPrev(getPlayerNameById($(this).attr("id")));
 });
 
 // pause button
 $('.pause').click(function() {
-	// audio.pause();
-	$('.play').show();
-	$('.pause').hide();
+	var playerName = getPlayerNameById($(this).attr("id"));
+	// Find the button that starts with play
+	toggleButton(this, "[id^=play]");
+
+	playerPause(getPlayerNameById($(this).attr("id")));
 });
+
+function toggleButton(currentButton, controlPrefix) {
+	var parent = $(currentButton).parent();
+	var buttonTwin = parent.find(controlPrefix);
+
+	if ($(currentButton).hasClass("clicked")) {
+		$(currentButton).toggleClass('clicked');
+		$(buttonTwin).hide();
+		$(currentButton).show();
+	} else {
+		$(currentButton).toggleClass('clicked');
+		$(buttonTwin).show();
+		$(currentButton).hide();
+	}
+	if ($(buttonTwin).hasClass("clicked")) {
+		$(buttonTwin).toggleClass('clicked');
+	}
+}
 
 // Volume controls
 $('.slider').on('input', function() {
@@ -52,8 +92,13 @@ function updateControlStates() {
 				$(element).addClass('clicked');
 			}
 			$(volumeControl).prop('disabled', false);
-			$(playControl).show();
-//			$(pauseControl).show();
+			if (!$(pauseControl).hasClass('clicked')) {
+				$(playControl).hide();
+				$(pauseControl).show();
+			} else {
+				$(playControl).show();
+				$(pauseControl).hide();
+			}
 			$(nextControl).show();
 			$(prevControl).show();
 		} else {
@@ -62,7 +107,7 @@ function updateControlStates() {
 			}
 			$(volumeControl).prop('disabled', true);
 			$(playControl).hide();
-//			$(pauseControl).hide();
+			$(pauseControl).hide();
 			$(nextControl).hide();
 			$(prevControl).hide();
 		}
@@ -74,12 +119,10 @@ function updateControlStates() {
 function updateVolumeControls() {
 	$('.slider').each(
 			function(index, element) {
-				//if ($(element).prop('disabled', false)) {
-					var volumeLevel = playerVolume(getPlayerNameById($(element)
-							.attr("id")), "?");
-					$(element).attr('value', parseInt(volumeLevel));
-					$(element).trigger('input');
-				//}
+				var volumeLevel = playerVolume(getPlayerNameById($(element)
+						.attr("id")), "?");
+				$(element).attr('value', parseInt(volumeLevel));
+				$(element).trigger('input');
 			});
 }
 

@@ -89,31 +89,37 @@
 								<span class="toggler-icon"></span>
 							</button>
 
-							<div class="collapse navbar-collapse sub-menu-bar"
+							<div class="collapse navbar-collapse sub-menu-bar flex-md-column"
 								id="navbarSupportedContent">
-								<ul id="nav" class="navbar-nav ml-auto">
-									<li class="nav-item active pull-left"><a id="trackInfo"><strong>Playing:&nbsp;</strong>
-											No Title<strong><br>by:&nbsp;</strong>No Artist</a></li>
-									<li class="nav-item active pull-left"><a
-										onclick="nextSong()" href="javascript:void(0)">Skip&nbsp;&gt;&gt;</a>
-									<li class="nav-item active">
-									<li class="nav-item"><a class="page-scroll"
-										id="currentTemp">Outdoor:</a></li>
-									<li class="nav-item"><a class="page-scroll" href="#home">Home</a>
-									</li>
-									<li class="nav-item"><a class="page-scroll" href="#audio">Audio</a>
-									</li>
-									<li class="nav-item"><a class="page-scroll"
-										href="#stations">Stations</a></li>
-									<li class="nav-item"><a class="page-scroll"
-										href="#players">Players</a></li>
-									<li class="nav-item"><a class="page-scroll"
-										href="#weather">Weather</a></li>
-									<li class="nav-item"><a class="page-scroll"
-										href="#servers">Servers</a></li>
-									<li class="nav-item"><a class="page-scroll"
-										href="#cameras">Cameras</a></li>
-								</ul>
+								<div class="row">
+									<ul id="nav" class="navbar-nav ml-auto">
+										<li class="nav-item"><a class="page-scroll" href="#home">Home</a>
+										</li>
+										<li class="nav-item"><a class="page-scroll" href="#audio">Audio</a></li>
+										<li class="nav-item"><a class="page-scroll"
+											href="#stations">Stations</a></li>
+										<li class="nav-item"><a class="page-scroll"
+											href="#players">Players</a></li>
+										<li class="nav-item"><a class="page-scroll"
+											href="#weather">Weather</a></li>
+										<li class="nav-item"><a class="page-scroll"
+											href="#servers">Servers</a></li>
+										<li class="nav-item"><a class="page-scroll"
+											href="#cameras">Cameras</a></li>
+									</ul>
+								</div>
+								<div class="row">
+									<ul id="nav" class="navbar-nav ml-auto">
+										<li class="nav-item active pull-left"><a
+											onclick="nextSong()" href="javascript:void(0)">Skip&nbsp;&gt;&gt;</a>
+										<li class="nav-item active pull-left"><a id="trackInfo"><strong>Playing:&nbsp;</strong>
+												No Title<strong>&nbsp;by:&nbsp;</strong>No Artist</a></li>
+										<li class="nav-item active"><a class="nav-item"
+											id="currentTemp">Outdoor:</a></li>
+										<li class="nav-item active"><a class="nav-item"
+											id="powerCost">Power: $</a></li>
+									</ul>
+								</div>
 							</div>
 							<!-- navbar collapse -->
 
@@ -433,11 +439,11 @@
 											class="slider" type="range" id="volumeLoft" min="0" max="100">
 										</label>
 									</div>
-									<div class="controls">
+									<div class="controls" id="controlsLoft">
 										<div class="power" id="powerLoft">
 											<i class="fa fa-power-off"></i>
 										</div>
-										<div class="previous" id="prevLot">
+										<div class="previous" id="prevLoft">
 											<i class="fa fa-fast-backward"></i>
 										</div>
 										<div class="play" id="playLoft">

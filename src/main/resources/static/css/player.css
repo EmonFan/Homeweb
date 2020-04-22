@@ -13,12 +13,6 @@
   transition: all .5s ease-in-out;
 }
 
-.clicked {
-  color: #49654D;
-  transform: scale(1.2);
-  transition: all .4s ease;
-  opacity:1;
-}
 
 .info {
   height: 140px;

@@ -80,12 +80,30 @@ public class MyRestController {
 		return response;
 	}
 
+	@PostMapping("/prevSong")
+	public ResponseEntity<String> prevSong(
+			@RequestParam(value = "player", defaultValue = LmsRequest.PLAYER_FRED) String playerName,
+			@RequestParam(value = "setting") String setting) {
+
+		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.prevSong(playerName));
+		return response;
+	}
+
+	@PostMapping("/playerPause")
+	public ResponseEntity<String> playerPause(
+			@RequestParam(value = "player", defaultValue = LmsRequest.PLAYER_FRED) String playerName,
+			@RequestParam(value = "setting") String setting) {
+
+		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.playerPause(playerName, setting));
+		return response;
+	}
+
 	@PostMapping("/playButton")
 	public ResponseEntity<String> playButton(
 			@RequestParam(value = "player", defaultValue = LmsRequest.PLAYER_FRED) String playerName,
 			@RequestParam(value = "setting") String setting) {
 
-		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.nextSong(playerName));
+		ResponseEntity<String> response = LMS.sendRequest(LmsRequest.playerPlay(playerName, setting));
 		return response;
 	}
 }

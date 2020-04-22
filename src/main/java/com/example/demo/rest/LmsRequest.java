@@ -22,10 +22,12 @@ public class LmsRequest {
 	private static final String VOLUME_UP = ",\"volume_up\"";
 	private static final String VOLUME_DN = ",\"volume_down\"";
 	private static final String PLAY = ",\"play\"";
-	private static final String PAUSE = ",\"pause\"";
+	private static final String PAUSE = "\",[\"pause\"";
 	private static final String POWER = ",\"power\"";
 	private static final String POWER_ON = ",\"1\"";
 	private static final String POWER_OFF = ",\"0\"";
+	private static final String PAUSE_ON = ",\"1\"";
+	private static final String PAUSE_OFF = ",\"0\"";
 
 	private static final String MIXER = "\",[\"mixer\"";
 	private static final String VOLUME = ",\"volume\"";
@@ -61,6 +63,7 @@ public class LmsRequest {
 	private final RestTemplate restTemplate = new RestTemplate();
 	private static final String LMS_URL = "http://squeezer.athome:9000/jsonrpc.js";
 	private static final String FWD = ",\"fwd\"";
+	private static final String BACK = ",\"rew\"";
 	private final HttpHeaders headers = new HttpHeaders();
 
 	/*
@@ -143,9 +146,33 @@ public class LmsRequest {
 	}
 
 	/*
+	 * Constructs a valid String to skip to the previous song in the playlist
+	 */
+	public static JSONObject prevSong(String playerName) {
+		return new JSONObject(PREAMBLE + getPlayerMac(playerName) + BUTTON + BACK + EPILOG);
+	}
+
+	/*
+	 * Constructs a valid String to pause the currently playing song.
+	 */
+	public static JSONObject playerPause(String playerName, String setting) {
+		final String playerMacAddress = getPlayerMac(playerName);
+		final String lmsCommand;
+
+		if ("0".equals(setting)) {
+			lmsCommand = PREAMBLE + playerMacAddress + PAUSE + PAUSE_ON + EPILOG;
+		}
+		else {
+			lmsCommand = PREAMBLE + playerMacAddress + PAUSE + PAUSE_OFF + EPILOG;
+		}
+
+		return new JSONObject(lmsCommand);
+	}
+
+	/*
 	 * Constructs a valid String to skip to the next song in the playlist
 	 */
-	public static JSONObject playerPlay(String playerName) {
+	public static JSONObject playerPlay(String playerName, String setting) {
 		return new JSONObject(PREAMBLE + getPlayerMac(playerName) + BUTTON + PLAY + EPILOG);
 	}
 

@@ -125,7 +125,7 @@ function setStation(station) {
 function getPlayerName(control) {
 	var id = $(control).attr("id");
 
-	return getPlanerNameById(id);
+	return getPlayerNameById(id);
 }
 
 /**
@@ -214,13 +214,14 @@ function updateTrackInfo() {
 	artist.replace("\"", "");
 	title.replace("\"", "");
 
-	var html = "<strong>Playing:&nbsp;</strong>__title__<strong><br>by:&nbsp;</strong>__artist__</a>"
+	var html = "<strong>Playing:&nbsp;</strong>__title__<strong>&nbsp;by:&nbsp;</strong>__artist__</a>"
 	html = html.replace("__title__", title);
 	html = html.replace("__artist__", artist);
 
 	$("#trackInfo").html(html);
 
 	updateTemperatures();
+	updatePower();
 }
 
 function updateTemperatures() {
@@ -236,12 +237,44 @@ function updateTemperatures() {
 	});
 }
 
+function updatePower() {
+
+	url = "http://emoncms.athome/emoncms/feed/value.json?";
+	$.get(url, {
+		id : 39,
+		apikey : "d460194eaa7cc9012c9bf285de892fcd"
+	}, function(response) {
+
+		var cost = response * .09;
+		var html = "Power: $&nbsp;<strong>" + cost.toFixed(2) + "</strong></a>"
+		$("#powerCost").html(html);
+	});
+}
+
 function nextSong() {
 	callLMS("FRED", "/nextSong", "");
 }
 
-function playButton(switchControl, player) {
-	var playerName = getPlayerName(switchControl);
+function skipNext(player) {
+	callLMS(player, "/nextSong", "");
+}
 
-	callLMS(playerName, "/playButton", "");
+function skipPrev(player) {
+	callLMS(player, "/prevSong", "");
+}
+
+function playerPause(player) {
+	var response = callLMS(player, "/playerPause", "0");
+	if (response.search("_pause\":0") >= 0) {
+		return false;
+	} else
+		return true;
+}
+
+function playButton(player) {
+	var response = callLMS(player, "/playerPause", "1");
+	if (response.search("_pause\":1") >= 0) {
+		return false;
+	} else
+		return true;
 }
