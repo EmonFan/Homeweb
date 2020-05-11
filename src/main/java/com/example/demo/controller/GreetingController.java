@@ -23,6 +23,12 @@ public class GreetingController {
 		return "index";
 	}
 
+	@RequestMapping(value = { "/start.html" }, method = { RequestMethod.GET })
+	public String startPage(Model model) {
+		model.addAttribute("appName", appName);
+		return "start";
+	}
+
 	@RequestMapping(value = "/avPowerOn", method = { RequestMethod.GET })
 	public String avPowerOn(Model model) {
 

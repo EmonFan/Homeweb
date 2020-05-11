@@ -8,6 +8,10 @@ docker tag image_id emonfan/homeweb:latest
 -- Push the image to docker hub
 docker push emonfan/homeweb:latest
 
+-- Force rebuild on dockerhost
+docker-compose pull homeweb
+
+
 -- Issue with headless docker installation on Ubuntu
 sudo apt-get remove golang-docker-credential-helpers
 docker login --username=emonfan
