@@ -2,254 +2,284 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="metro4:init:mode" content="immediate">
-    <meta name="twitter:site" content="@metroui">
-    <meta name="twitter:creator" content="@pimenov_sergey">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Metro 4 Components Library">
-    <meta name="twitter:description"
-        content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
-    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="metro4:init:mode" content="immediate">
+<meta property="og:title" content="Our Home">
+<meta property="og:description" content="Our smart home web application">
+<meta property="og:type" content="website">
 
-    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
-    <meta property="og:title" content="Metro 4 Components Library">
-    <meta property="og:description"
-        content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
-    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="968">
-    <meta property="og:image:height" content="504">
+<meta name="description" content="Our smart home">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-    <meta name="author" content="Sergey Pimenov">
-    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
-    <meta name="keywords"
-        content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+<link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+<link href="css/start.css" rel="stylesheet">
 
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
-    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
-    <link href="css/start.css" rel="stylesheet">
-
-    <title>Start screen demo - Metro 4 :: Popular HTML, CSS and JS library</title>
+<title>Our smart home</title>
 </head>
 
 <body class="bg-dark fg-white m4-cloak">
-    <div class="container-fluid">
-        <div class="tiles-area clear">
-            <div class="tiles-grid tiles-group size-3 fg-white" data-group-title="House Stats">
-                <div data-role="tile" class="bg-cyan fg-white" data-size="medium">
-                    <span class="mif-thermometer icon"></span>
-                    <span class="badge-top">Laundry</span>
-                    <span class="badge-bottom" id="laundryTemp">0 C</span>
-                </div>
-                <div data-role="tile" class="bg-cyan fg-white" data-size="medium">
-                    <span class="mif-thermometer icon"></span>
-                    <span class="badge-top">Kitchen</span>
-                    <span class="badge-bottom" id="kitchenTemp">0 C</span>
-                </div>
-                <div data-role="tile" class="bg-cyan fg-white" data-size="medium">
-                    <span class="mif-thermometer icon"></span>
-                    <span class="badge-top">Entrance</span>
-                    <span class="badge-bottom" id="entranceTemp">0 C</span>
-                </div>
-                <div data-role="tile" class="bg-cyan fg-white" data-size="medium">
-                    <span class="mif-thermometer icon"></span>
-                    <span class="badge-top">Master</span>
-                    <span class="badge-bottom" id="masterBedTemp">0 C</span>
-                </div>
-                <div data-role="tile" class="bg-cyan fg-white" data-size="medium">
-                    <span class="mif-thermometer icon"></span>
-                    <span class="badge-top">Garage</span>
-                    <span class="badge-bottom" id="garageTemp">0 C</span>
-                </div>
-                <div data-role="tile" class="bg-cyan fg-white" data-size="medium">
-                    <span class="mif-thermometer icon"></span>
-                    <span class="badge-top">Fred's</span>
-                    <span class="badge-bottom" id="marcOfficeTemp">0 C</span>
-                </div>
-                <div data-role="tile" class="bg-cyan fg-white" data-size="medium">
-                    <span class="mif-thermometer icon"></span>
-                    <span class="badge-top">Beth's</span>
-                    <span class="badge-bottom" id="bethOfficeTemp">0 C</span>
-                </div>
-                <div data-role="tile" class="bg-cyan fg-white" data-size="medium">
-                    <span class="mif-power-cord icon"></span>
-                    <span class="badge-top">Hot W.</span>
-                    <span class="badge-bottom" id="hotWaterPower">0 kw</span>
-                </div>
-                <div data-role="tile" class="bg-cyan fg-white" data-size="medium">
-                    <span class="mif-power-cord icon"></span>
-                    <span class="badge-top">Geo</span>
-                    <span class="badge-bottom" id="geothermalPower">0 kw</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="mif-thermometer icon"></span>
-                    <span class="badge-top">Outdoor</span>
-                    <span class="badge-bottom" id="currentTemp">0 C</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="mif-power-cord icon"></span>
-                    <span class="badge-top">Main</span>
-                    <span class="badge-bottom" id="mainPower">0 kw</span>
-                </div>
-            </div>
+	<div class="container-fluid">
+		<div class="tiles-area clear">
+			<div class="tiles-grid tiles-group size-1 fg-white"
+				data-group-title="House Stats">
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Laundry</span>
+					</div>
+					<div style="text-align: center">
+						<span id="laundryTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center">
+						<span class="tag">Kitchen</span>
+					</div>
+					<div style="text-align: center">
+						<span id="kitchenTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center">
+						<span class="tag">Entrance</span>
+					</div>
+					<div style="text-align: center">
+						<span id="entranceTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center">
+						<span class="tag">Master</span>
+					</div>
+					<div style="text-align: center">
+						<span id="masterBedTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Garage</span>
+					</div>
+					<div style="text-align: center">
+						<span id="garageTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Fred's</span>
+					</div>
+					<div style="text-align: center">
+						<span id="marcOfficeTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Beth's</span>
+					</div>
+					<div style="text-align: center">
+						<span id="bethOfficeTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Hot Water</span>
+					</div>
+					<div style="text-align: center">
+						<span id="hotWaterPower">0 kw</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Geothermal</span>
+					</div>
+					<div style="text-align: center">
+						<span id="geothermalPower">0 kw</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Outdoor</span>
+					</div>
+					<div style="text-align: center">
+						<span id="currentTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Main</span>
+					</div>
+					<div style="text-align: center">
+						<span id="mainPower">25.55 kw</span>
+					</div>
+				</div>
+			</div>
 
-            <div class="tiles-grid tiles-group size-5 fg-white" data-group-title="Alarm Status">
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Garage Door Left</span>
-                </div>
-                <div data-role="tile" class="bg-red fg-white" data-size="medium">
-                    <span class="badge-top">Garage Door Right</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Basement Door</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Basement Motion</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Basement Smoke</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Basement Windows</span>
-                </div>
-                <div data-role="tile" class="bg-red fg-white" data-size="medium">
-                    <span class="badge-top">Screen Door North</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Screen Door South</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Patio Door</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Kitchen Door</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Kitchen Motion</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Main Entrance Door</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">East Motion</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Main Floor Smoke</span>
-                </div>
-                <div data-role="tile" class="bg-red fg-white" data-size="medium">
-                    <span class="badge-top">Laundry Door</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Second Floor Smoke</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">French Door</span>
-                </div>
-                <div data-role="tile" class="bg-green fg-white" data-size="medium">
-                    <span class="badge-top">Basement Water Sensor</span>
-                </div>
-            </div>
+			<div class="tiles-grid tiles-group size-2 fg-white"
+				data-group-title="Alarm Status">
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Garage Door Left</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-red fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Garage Door Right</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Basement Door</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Basement Motion</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Basement Smoke</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Basement Windows</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-red fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Screen Door North</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Screen Door South</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Patio<br>Door
+						</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Kitchen Door</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Kitchen Motion</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Main Entrance Door</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">East Motion</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Main Floor Smoke</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-red fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Laundry Door</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Second Floor Smoke</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">French Door</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Basement Water Sensor</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="tiles-grid tiles-group size-1 fg-white"
+				data-group-title="Audio Control">
+				<div data-role="tile" class="bg-white"
+					data-cover="images/kodi_128.png" data-size="small"></div>
+				<div data-role="tile" class="bg-white"
+					data-cover="images/lms_128.png" data-size="small"></div>
+				<div data-role="tile" data-cover="images/seventies.png"
+					data-size="small"></div>
+				<div data-role="tile" data-cover="images/classic.jpg"
+					data-size="small"></div>
+				<div data-role="tile" data-cover="images/hardrock.jpg"
+					data-size="small"></div>
+				<div data-role="tile" data-cover="images/blues.jpg"
+					data-size="small"></div>
+				<div data-role="tile" data-cover="images/hairband.jpg"
+					data-size="small"></div>
+
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Fred's<br>Player
+						</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Loft<br>Player
+						</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Workshop Player</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Kitchen Player</span>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="tiles-grid tiles-group size-2 fg-white"
+				data-group-title="Cameras">
+				<div data-role="tile" data-cover="images/cam1.jpg">
+					<span class="branding-bar">Cam-1</span>
+				</div>
+				<div data-role="tile" data-cover="images/cam2.jpg">
+					<span class="branding-bar">Cam-2</span>
+				</div>
+				<div data-role="tile" data-cover="images/cam3.jpg">
+					<span class="branding-bar">Cam-3</span>
+				</div>
+				<div data-role="tile" data-cover="images/cam4.jpg">
+					<span class="branding-bar">Cam-4</span>
+				</div>
+				<div data-role="tile" data-cover="images/cam5.jpg">
+					<span class="branding-bar">Cam-5</span>
+				</div>
+				<div data-role="tile" data-cover="images/cam6.jpg">
+					<span class="branding-bar">Cam-6</span>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 
-
-
-            <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Images">
-                <div data-role="tile" data-cover="images/cam1.jpg">
-                    <span class="branding-bar">Cam-1</span>
-                </div>
-                <div data-role="tile" data-cover="images/cam2.jpg">
-                    <span class="branding-bar">Cam-2</span>
-                </div>
-                <div data-role="tile" data-cover="images/cam3.jpg">
-                    <span class="branding-bar">Cam-3</span>
-                </div>
-                <div data-role="tile" data-cover="images/cam4.jpg">
-                    <span class="branding-bar">Cam-4</span>
-                </div>
-                <div data-role="tile" data-cover="images/cam5.jpg">
-                    <span class="branding-bar">Cam-5</span>
-                </div>
-                <div data-role="tile" data-cover="images/cam6.jpg">
-                    <span class="branding-bar">Cam-6</span>
-                </div>
-            </div>
-
-            <div class="tiles-grid tiles-group size-1 fg-white" data-group-title="Office">
-                <div data-role="tile" data-size="small">
-                    <img src="../../images/outlook.png" class="icon">
-                </div>
-                <div data-role="tile" data-size="small" class="bg-brown">
-                    <img src="../../images/word.png" class="icon">
-                </div>
-                <div data-role="tile" data-size="small" class="bg-green">
-                    <img src="../../images/excel.png" class="icon">
-                </div>
-                <div data-role="tile" data-size="small" class="bg-red">
-                    <img src="../../images/access.png" class="icon">
-                </div>
-                <div data-role="tile" data-size="small" class="bg-teal">
-                    <img src="../../images/powerpoint.png" class="icon">
-                </div>
-            </div>
-
-            <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Games">
-                <div data-role="tile" data-cover="../../images/Battlefield_4_Icon.png">
-                    <span class="branding-bar">Battlefield 4</span>
-                </div>
-                <div data-role="tile" class="bg-green">
-                    <img src="../../images/x-box.png" class="icon">
-                    <span class="branding-bar">XBOX ONE</span>
-                </div>
-                <div data-role="tile" data-size="wide" data-cover="../../images/x-box.png">
-                    <span class="branding-bar">XBOX LIVE</span>
-                    <span class="badge-top">5</span>
-                </div>
-            </div>
-
-            <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="General">
-                <a href="https://github.com/olton/Metro-UI-CSS" data-role="tile" class="bg-indigo fg-white">
-                    <span class="mif-github icon"></span>
-                    <span class="branding-bar">Github</span>
-                    <span class="badge-bottom">30</span>
-                </a>
-                <div data-role="tile" class="bg-cyan fg-white">
-                    <span class="mif-envelop icon"></span>
-                    <span class="branding-bar">Email</span>
-                    <span class="badge-bottom">10</span>
-                </div>
-                <div data-role="tile" class="bg-orange fg-white" data-size="wide">
-                    <span class="mif-chrome icon"></span>
-                    <span class="branding-bar">Chrome</span>
-                </div>
-                <div data-role="tile" data-size="small">
-                    <span class="mif-apple icon"></span>
-                </div>
-                <div data-role="tile" data-size="small" class="bg-red fg-white">
-                    <span class="mif-bell icon"></span>
-                </div>
-                <div data-role="tile" data-size="small" class="bg-teal fg-white col-1 row-6">
-                    <span class="mif-windows icon"></span>
-                </div>
-                <div data-role="tile" data-size="small" class="bg-brown fg-white col-2 row-6">
-                    <span class="mif-wind icon"></span>
-                </div>
-                <div data-role="tile" class="bg-cyan fg-white">
-                    <span class="mif-table icon"></span>
-                    <span class="branding-bar">Tables</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <script src="metro/js/metro.js"></script>
-    <script src="js/start.js"></script>
+	<script src="metro/js/metro.js"></script>
+	<script src="js/start.js"></script>
 
 </body>
 

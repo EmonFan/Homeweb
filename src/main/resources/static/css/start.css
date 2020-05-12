@@ -5,15 +5,9 @@
   padding-bottom: 20px;
 }
 
-.tile-small .badge-top, 
-.tile-medium .badge-top, 
-.tile-wide .badge-top, 
-.tile-large .badge-top, 
-.tile-app .badge-top
+.tag
 {
-  background-color: transparent;
-  font-size: 18px;
-  position: relative;
+  font-size: 13px;
 }
 
 .tile-small .badge-bottom, 
@@ -23,15 +17,9 @@
 .tile-app .badge-bottom 
 {
   background-color: transparent;
-  font-size: 18px;
+  font-size: 14px;
 }
 
-.start-screen-title {
-  position: fixed;
-  top: 20px;
-  left: 80px;
-  display: none;
-}
 [class*=tile-] {
   -webkit-transform: scale(0.8);
       -ms-transform: scale(0.8);
@@ -51,7 +39,8 @@
   .tiles-group {
     left: 100px;
   }
-  .tiles-group {
-    margin-left: 80px;
-  }
+}
+
+.tiles-grid {
+	grid-gap:5px;
 }
