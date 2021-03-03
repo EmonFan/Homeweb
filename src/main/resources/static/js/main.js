@@ -363,9 +363,9 @@ $(function() {
 			},
 			"retina_detect" : !0
 		});
-
-
+	
 	updatePlayerControls();
 	
 	window.lonload = updateNowPlaying();
+
 });
