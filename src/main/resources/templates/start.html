@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="metro4:init:mode" content="immediate">
+<meta property="og:title" content="Our Home">
+<meta property="og:description" content="Our smart home web application">
+<meta property="og:type" content="website">
+
+<meta name="description" content="Our smart home">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+<link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+<link href="css/start.css" rel="stylesheet">
+<link href="css/dialogs.css" rel="stylesheet">
+
+<!--====== Bootstrap CSS ======-->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<!--====== Player CSS ======-->
+<link rel="stylesheet" href="css/player.css">
+<!--====== Style CSS ======-->
+<link rel="stylesheet" href="css/style.css">
+
+
+<title>Our smart home</title>
+</head>
+
+<body class="bg-dark fg-white m4-cloak" id="documentBody">
+	<div class="container-fluid">
+		<div class="tiles-area clear">
+			<div class="tiles-grid tiles-group size-1 fg-white"
+				data-group-title="House Stats">
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Laundry</span>
+					</div>
+					<div style="text-align: center">
+						<span id="laundryTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center">
+						<span class="tag">Kitchen</span>
+					</div>
+					<div style="text-align: center">
+						<span id="kitchenTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center">
+						<span class="tag">Entrance</span>
+					</div>
+					<div style="text-align: center">
+						<span id="entranceTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center">
+						<span class="tag">Master</span>
+					</div>
+					<div style="text-align: center">
+						<span id="masterBedTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Garage</span>
+					</div>
+					<div style="text-align: center">
+						<span id="garageTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Fred's</span>
+					</div>
+					<div style="text-align: center">
+						<span id="marcOfficeTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Beth's</span>
+					</div>
+					<div style="text-align: center">
+						<span id="bethOfficeTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Hot Water</span>
+					</div>
+					<div style="text-align: center">
+						<span id="hotWaterPower">0 kw</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Geothermal</span>
+					</div>
+					<div style="text-align: center">
+						<span id="geothermalPower">0 kw</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Outdoor</span>
+					</div>
+					<div style="text-align: center">
+						<span id="currentTemp">0 C</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Main</span>
+					</div>
+					<div style="text-align: center">
+						<span id="mainPower">25.55 kw</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="tiles-grid tiles-group size-2 fg-white"
+				data-group-title="Alarm Status">
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Garage Door Left</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-red fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Garage Door Right</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Basement Door</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Basement Motion</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Basement Smoke</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Basement Windows</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-red fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Screen Door North</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Screen Door South</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Patio<br>Door
+						</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Kitchen Door</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Kitchen Motion</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Main Entrance Door</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">East Motion</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Main Floor Smoke</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-red fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Laundry Door</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Second Floor Smoke</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">French Door</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-green fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Basement Water Sensor</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="tiles-grid tiles-group size-1 fg-white"
+				data-group-title="Audio Control">
+				<div data-role="tile" class="bg-white"
+					data-cover="images/kodi_128.png" data-size="small"></div>
+				<div data-role="tile" class="bg-white"
+					data-cover="images/lms_128.png" data-size="small"></div>
+				<div data-role="tile" data-cover="images/seventies.png"
+					data-size="small"></div>
+				<div data-role="tile" data-cover="images/classic.jpg"
+					data-size="small"></div>
+				<div data-role="tile" data-cover="images/hardrock.jpg"
+					data-size="small"></div>
+				<div data-role="tile" data-cover="images/blues.jpg"
+					data-size="small"></div>
+				<div data-role="tile" data-cover="images/hairband.jpg"
+					data-size="small"></div>
+
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small" onclick="goFullScreen()">
+					<div style="text-align: center;">
+						<span class="tag">Fred's<br>Player
+						</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small" onclick="timeoutDemo()">
+					<div style="text-align: center;">
+						<span class="tag">Loft<br>Player
+						</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Workshop Player</span>
+					</div>
+				</div>
+				<div data-role="tile" class="bg-cyan fg-white" data-size="small">
+					<div style="text-align: center;">
+						<span class="tag">Kitchen Player</span>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="tiles-grid tiles-group size-2 fg-white"
+				data-group-title="Cameras">
+				<div data-role="tile" data-cover="images/cam1.jpg">
+					<span class="branding-bar">Cam-1</span>
+				</div>
+				<div data-role="tile" data-cover="images/cam2.jpg">
+					<span class="branding-bar">Cam-2</span>
+				</div>
+				<div data-role="tile" data-cover="images/cam3.jpg">
+					<span class="branding-bar">Cam-3</span>
+				</div>
+				<div data-role="tile" data-cover="images/cam4.jpg">
+					<span class="branding-bar">Cam-4</span>
+				</div>
+				<div data-role="tile" data-cover="images/cam5.jpg">
+					<span class="branding-bar">Cam-5</span>
+				</div>
+				<div data-role="tile" data-cover="images/cam6.jpg">
+					<span class="branding-bar">Cam-6</span>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<script src="metro/js/metro.js"></script>
+	<script src="js/start.js"></script>
+	
+	<!--====== Dialogs js ======-->
+    <script src="js/dialogs.js"></script>
+	<!--====== Player js ======-->
+	<script src="js/player.js"></script>
+	<!--====== Full Screen js ======-->
+	<script src="js/screenfull.js"></script>
+
+</body>
+
+</html>

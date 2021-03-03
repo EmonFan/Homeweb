@@ -363,35 +363,9 @@ $(function() {
 			},
 			"retina_detect" : !0
 		});
-
-	// Player volume control callbacks
-	var volumeFred = document.getElementById("volumeFred");
-	volumeFred.oninput = function() {
-		playerVolume("FRED", this.value);
-	}
-
-	var volumeLoft = document.getElementById("volumeLoft");
-	volumeLoft.oninput = function() {
-		playerVolume("LOFT", this.value);
-	}
-
-	var volumeWorkshop = document.getElementById("volumeWorkshop");
-	volumeWorkshop.oninput = function() {
-		playerVolume("WORKSHOP", this.value);
-	}
-
-	var volumeKitchen = document.getElementById("volumeKitchen");
-	volumeKitchen.oninput = function() {
-		playerVolume("KITCHEN", this.value);
-	}
-
-	updateControlStates();
-
-	function updateNowPlaying() {
-		setInterval(function() {
-			updateTrackInfo();
-		}, 5000);
-	}
-
+	
+	updatePlayerControls();
+	
 	window.lonload = updateNowPlaying();
+
 });

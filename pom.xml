@@ -11,8 +11,8 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>Homeweb</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>demo_2</name>
+	<version>1.0</version>
+	<name>Homeweb</name>
 	<description>Smarthome Navigator</description>
 
 	<properties>
@@ -54,6 +54,16 @@
 			<artifactId>json</artifactId>
 			<version>20180130</version>
 		</dependency>
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+            <version>1.2.0</version>
+       </dependency>
+            <dependency>
+	            <groupId>org.eclipse.paho</groupId>
+	            <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+	            <version>1.2.0</version>
+       </dependency>
 	</dependencies>
 
 	<build>

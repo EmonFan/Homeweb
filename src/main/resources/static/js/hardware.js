@@ -2,6 +2,7 @@
 
 /**
  * Selects the HDMI1 input on the Yamaha receiver and turns off all players
+ * 
  * @returns nothing
  */
 function listenToKodi() {
@@ -17,7 +18,8 @@ function listenToKodi() {
 }
 
 /**
- * Selects the Audio1 input on the Yamaha receiver and turns on all players 
+ * Selects the Audio1 input on the Yamaha receiver and turns on all players
+ * 
  * @returns nothing
  */
 function listenToLMS() {
@@ -34,9 +36,13 @@ function listenToLMS() {
 
 /**
  * Call the Logitech Media Server with the passed in parameters
- * @param player the name of the targeted player
- * @param operation the name of the operation to be performed
- * @param setting the value to be used for the operation.
+ * 
+ * @param player
+ *            the name of the targeted player
+ * @param operation
+ *            the name of the operation to be performed
+ * @param setting
+ *            the value to be used for the operation.
  * @returns the response from the server.
  */
 function callLMS(player, operation, setting) {
@@ -61,8 +67,11 @@ function callLMS(player, operation, setting) {
 
 /**
  * Sets or gets the player volume
- * @param player the name of the player we are targeting
- * @param setting the volume level to be set, or retrieved if equal to ?
+ * 
+ * @param player
+ *            the name of the player we are targeting
+ * @param setting
+ *            the volume level to be set, or retrieved if equal to ?
  * @returns the current volume
  */
 function playerVolume(player, setting) {
@@ -90,7 +99,9 @@ function playerVolume(player, setting) {
 
 /**
  * Sets the requested station to play
- * @param station the name of the station
+ * 
+ * @param station
+ *            the name of the station
  * @returns nothing
  */
 function setStation(station) {
@@ -106,11 +117,25 @@ function setStation(station) {
 
 /**
  * Get the player name by parsing the id of the control
- * @param control the actual html control
+ * 
+ * @param control
+ *            the actual html control
  * @returns the player name
  */
 function getPlayerName(control) {
 	var id = $(control).attr("id");
+
+	return getPlayerNameById(id);
+}
+
+/**
+ * Get the player name by parsing the id of the control
+ * 
+ * @param control
+ *            the actual html control
+ * @returns the player name
+ */
+function getPlayerNameById(id) {
 	if (id.search("Fred") >= 0)
 		return "FRED";
 	else if (id.search("Loft") >= 0)
@@ -123,52 +148,33 @@ function getPlayerName(control) {
 
 /**
  * Returns the volume control id based matching the player name
- * @param playerName the requested control id's player name
+ * 
+ * @param playerName
+ *            the requested control id's player name
  * @returns
  */
-function getVolumeControlId(playerName) {
+function getControlNameFromId(playerName, prefix) {
 	var volumeControlId;
 
 	if (playerName.search("FRED") >= 0) {
-		volumeControlId = "volumeFred";
+		volumeControlId = "#" + prefix + "Fred";
 	} else if (playerName.search("KITCHEN") >= 0) {
-		volumeControlId = "volumeKitchen";
+		volumeControlId = "#" + prefix + "Kitchen";
 	} else if (playerName.search("LOFT") >= 0) {
-		volumeControlId = "volumeLoft";
+		volumeControlId = "#" + prefix + "Loft";
 	} else if (playerName.search("WORKSHOP") >= 0) {
-		volumeControlId = "volumeWorkshop";
+		volumeControlId = "#" + prefix + "Workshop";
 	}
 	return volumeControlId;
 }
 
 /**
- * Switches the squeezebox power on or off.
- * @param switchControl the control id
- * @param player the name of the player
- * @returns nothing
- */
-function powerSwitch(switchControl, player) {
-	var playerName = getPlayerName(switchControl);
-	var controlTag = "#" + getVolumeControlId(playerName);
-
-	if (switchControl.checked == true) {
-		if (!playerPower(playerName, "?")) {
-			playerPower(player, "ON");
-			$(controlTag).prop('disabled', false);
-			$(controlTag).val(playerVolume(playerName, "?"));
-		}
-	} else {
-		if (playerPower(playerName, "?")) {
-			playerPower(player, "OFF");
-			$(controlTag).prop('disabled', true);
-		}
-	}
-}
-
-/**
- * Sets or queries the power setting of a player 
- * @param player the name of the player
- * @param setting 1 for on, 0 for off, or ? to query the state.
+ * Sets or queries the power setting of a player
+ * 
+ * @param player
+ *            the name of the player
+ * @param setting
+ *            1 for on, 0 for off, or ? to query the state.
  * @returns true if on, false if off
  */
 function playerPower(player, setting) {
@@ -179,98 +185,96 @@ function playerPower(player, setting) {
 		return true;
 }
 
-/**
- * Enables or disables the power and volume controls based on the actual hardware
- * status.
- */
-function updateControlStates() {
-	if (playerPower("FRED", "?")) {
-		$("#powerFred").prop('checked', true);
-		$("#volumeFred").prop('disabled', false);
-		$("#volumeFred").val(parseInt(playerVolume("FRED", "?")));
-	} else {
-		$("#powerFred").prop('checked', false);
-		$("#volumeFred").prop('disabled', true);
-	}
-
-	if (playerPower("KITCHEN", "?")) {
-		$("#powerKitchen").prop('checked', true);
-		$("#volumeKitchen").prop('disabled', false);
-		$("#volumeKitchen").val(parseInt(playerVolume("KITCHEN", "?")));
-	} else {
-		$("#powerKitchen").prop('checked', false);
-		$("#volumeKitchen").prop('disabled', true);
-	}
-
-	if (playerPower("LOFT", "?")) {
-		$("#powerLoft").prop('checked', true);
-		$("#volumeLoft").prop('disabled', false);
-		$("#volumeLoft").val(parseInt(playerVolume("LOFT", "?")));
-	} else {
-		$("#powerLoft").prop('checked', false);
-		$("#volumeLoft").prop('disabled', true);
-	}
-
-	if (playerPower("WORKSHOP", "?")) {
-		$("#powerWorkshop").prop('checked', true);
-		$("#volumeWorkshop").prop('disabled', false);
-		$("#volumeWorkshop").val(parseInt(playerVolume("WORKSHOP", "?")));
-	} else {
-		$("#powerWorkshop").prop('checked', false);
-		$("#volumeWorkshop").prop('disabled', true);
-	}
-
-	$("#powerFred").change();
-	$("#volumeFred").change();
-
-	$("#powerKitchen").change();
-	$("#volumeKitchen").change();
-
-	$("#powerLoft").change();
-	$("#volumeLoft").change();
-
-	$("#powerWorkshop").change();
-	$("#volumeWorkshop").change();
-}
-
 function updateTrackInfo() {
 
-//	Artist: {"method":"slim.request","result":{"_artist":"Beatles"},"params":["00:04:20:07:eb:17",["artist","?"]],"id":1}
-//	 Title: {"method":"slim.request","params":["00:04:20:07:eb:17",["title","?"]],"result":{"_title":"Come Together "},"id":1}
-	
+	// Artist:
+	// {"method":"slim.request","result":{"_artist":"Beatles"},"params":["00:04:20:07:eb:17",["artist","?"]],"id":1}
+	// Title:
+	// {"method":"slim.request","params":["00:04:20:07:eb:17",["title","?"]],"result":{"_title":"Come
+	// Together "},"id":1}
+
 	var artist = callLMS("FRED", "/artist", "?");
 	var title = callLMS("FRED", "/title", "?");
 
 	var startIndex = artist.indexOf("_artist\"");
 	var stopIndex = artist.indexOf("}", startIndex);
-	
-	artist = artist.substring(startIndex+10, stopIndex-1);
-	
+
+	artist = artist.substring(startIndex + 10, stopIndex - 1);
+
 	startIndex = title.indexOf("_title\"");
 	stopIndex = title.indexOf("}", startIndex);
-	
-	title = title.substring(startIndex+9, stopIndex-1);
-	
-//	alert("Artist: "+artist+" Title: "+title);
 
-//	<strong>Playing:&nbsp;</strong>	Against The Wind<strong><br>by:&nbsp;</strong> Bob Seger &	The Silver Bullet Band</a>
+	title = title.substring(startIndex + 9, stopIndex - 1);
 
-	artist.replace("\"","");
-	title.replace("\"","");
+	// alert("Artist: "+artist+" Title: "+title);
 
-	var html = "<strong>Playing:&nbsp;</strong>__title__<strong><br>by:&nbsp;</strong>__artist__</a>"
+	// <strong>Playing:&nbsp;</strong> Against The
+	// Wind<strong><br>by:&nbsp;</strong> Bob Seger & The Silver Bullet Band</a>
+
+	artist.replace("\"", "");
+	title.replace("\"", "");
+
+	var html = "<strong>Playing:&nbsp;</strong>__title__<strong>&nbsp;by:&nbsp;</strong>__artist__</a>"
 	html = html.replace("__title__", title);
 	html = html.replace("__artist__", artist);
-	
+
 	$("#trackInfo").html(html);
+
+	updateTemperatures();
+	updatePower();
+}
+
+function updateTemperatures() {
+
+	url = "http://emoncms.athome/emoncms/feed/value.json?";
+	$.get(url, {
+		id : 15,
+		apikey : "d460194eaa7cc9012c9bf285de892fcd"
+	}, function(response) {
+
+		var html = "Outdoor:&nbsp;<strong>" + response + "&nbsp;C</strong></a>"
+		$("#currentTemp").html(html);
+	});
+}
+
+function updatePower() {
+
+	url = "http://emoncms.athome/emoncms/feed/value.json?";
+	$.get(url, {
+		id : 39,
+		apikey : "d460194eaa7cc9012c9bf285de892fcd"
+	}, function(response) {
+
+		var cost = response * .09;
+		var html = "Power: $&nbsp;<strong>" + cost.toFixed(2) + "</strong></a>"
+		$("#powerCost").html(html);
+	});
 }
 
 function nextSong() {
 	callLMS("FRED", "/nextSong", "");
 }
 
-function playButton(switchControl, player) {
-	var playerName = getPlayerName(switchControl);
-	
-	callLMS(playerName, "/playButton", "");
+function skipNext(player) {
+	callLMS(player, "/nextSong", "");
+}
+
+function skipPrev(player) {
+	callLMS(player, "/prevSong", "");
+}
+
+function playerPause(player) {
+	var response = callLMS(player, "/playerPause", "0");
+	if (response.search("_pause\":0") >= 0) {
+		return false;
+	} else
+		return true;
+}
+
+function playButton(player) {
+	var response = callLMS(player, "/playerPause", "1");
+	if (response.search("_pause\":1") >= 0) {
+		return false;
+	} else
+		return true;
 }
